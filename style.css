@@ -1,0 +1,810 @@
+/* === 共通レイアウト ===*/
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: #3f2f25;
+    background: #f6efe7;
+}
+
+.phone {
+    margin: 0 auto;
+    padding: 28px 24px 40px;
+    max-width: 430px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    background: #fffdf8;
+}
+
+/* === トップ画面（index.html） ===*/
+
+.search-box span {
+    font-size: 24px;
+}
+
+.search-box input {
+    flex: 1;
+    font-size: 16px;
+    border: none;
+    outline: none;
+}
+
+/* === 一覧画面（list.html） ===*/
+/* ヘッダー */
+.result-header {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    background: #fdf8f2;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 検索結果 ◯件*/
+.result-title {
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #666;
+}
+
+/* ← 戻る */
+.back-btn {
+    white-space: nowrap;
+    font-size: 15px;
+    font-weight: 600;
+    color: #E85D75;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* ヘッダー右側の場所 */
+.header-space {
+    width: 70px;
+}
+
+.header-map-btn {
+    display: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.top-btn {
+    display: none;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1000;
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    background: #f2a23b;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+/* 検索条件 */
+.search-condition {
+    margin-bottom: 16px;
+    padding: 12px;
+    font-size: 14px;
+    background: #fff7ef;
+    border-radius: 10px;
+}
+
+/* 検索結果0の時の画面 */
+.no-result-title {
+    white-space: nowrap;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* ショップカード */
+.shop-card {
+    margin-bottom: 16px;
+    padding: 18px 16px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.shop-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.shop-name {
+    display: -webkit-box;
+    overflow: hidden;
+    min-width: 0;
+    font-size: 18px;
+    font-weight: bold;
+    /* 店名を2行までに制限 */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.shop-genre {
+    padding: 4px 10px;
+    white-space: nowrap;
+    background: #fff1df;
+    border-radius: 999px;
+    font-size: 12px;
+}
+
+.shop-icons {
+    margin-bottom: 8px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.icon-item {
+    display: flex;
+    gap: 1px;
+    white-space: nowrap;
+    align-items: center;
+}
+
+.shop-icon-img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.shop-comment {
+    display: flex;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.comment-label {
+    flex-shrink: 0;
+}
+
+.comment-text {
+    display: -webkit-box;
+    overflow: hidden;
+    /* 店名を2行までに制限 */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.shop-address {
+    margin: 12px 0;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 14px;
+}
+
+.address-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.address-text {
+    display: -webkit-box;
+    overflow: hidden;
+    min-width: 0;
+    /* 店名を2行までに制限 */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.shop-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 48px;
+    gap: 10px;
+}
+
+.action-btn {
+    display: flex;
+    height: 44px;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background: white;
+    text-decoration: none;
+    border: 1px solid #eadfd2;
+    border-radius: 10px;
+}
+
+.action-btn img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.google-btn {
+    color: #e94264;
+}
+
+.map-btn {
+    color: #1f8acb;
+}
+
+.phone-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    border: 1px solid #eadfd2;
+    background: #fff8f4;
+    text-decoration: none;
+}
+
+/* もっと見る */
+.more-btn {
+    display: block;
+
+    margin: 20px auto;
+    padding: 12px 28px;
+
+    font-size: 15px;
+    font-weight: bold;
+    color: #4b392c;
+
+    background: white;
+    border: 1px solid #eadfd2;
+    border-radius: 999px;
+
+    cursor: pointer;
+}
+
+/* 地図 */
+#map {
+
+    width: 100%;
+    height: 650px;
+
+    border-radius: 20px;
+
+}
+
+.popup-card {
+
+    min-width: 220px;
+
+}
+
+.popup-title {
+
+    font-size: 18px;
+    font-weight: bold;
+
+    margin-bottom: 10px;
+
+}
+
+.popup-icons {
+
+    line-height: 1.8;
+
+    margin-bottom: 10px;
+
+}
+
+.popup-address {
+
+    font-size: 13px;
+
+    color: #666;
+
+    margin-bottom: 10px;
+
+}
+
+.popup-phone {
+
+    margin-bottom: 8px;
+
+}
+
+.popup-phone a,
+.popup-search a {
+
+    text-decoration: none;
+
+    color: #2e7d32;
+
+    font-weight: bold;
+
+}
+
+#shopDetail {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+    z-index: 1000;
+
+    padding: 16px;
+
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+    /* 最初は下に隠す */
+    transform: translateY(calc(100% + 32px));
+
+    /* ニュッと動かす */
+    transition: transform 0.3s ease;
+}
+
+#shopDetail.show {
+    transform: translateY(0);
+}
+
+.map-area {
+    position: relative;
+}
+
+.shop-detail-name {
+    margin-bottom: 10px;
+
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.shop-detail-icons {
+    margin-bottom: 10px;
+
+    font-size: 14px;
+}
+
+.shop-detail-address {
+    margin-bottom: 10px;
+
+    font-size: 13px;
+    color: #666;
+}
+
+.shop-detail-phone {
+    font-weight: bold;
+    text-decoration: none;
+    color: #e85d75;
+}
+
+.shop-detail-handle {
+    width: 40px;
+    height: 4px;
+
+    margin: 0 auto 12px;
+
+    background: #ccc;
+    border-radius: 2px;
+}
+
+/* === 地図画面 店舗詳細カード === */
+
+.shop-detail-name {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.shop-detail-address {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    margin: 12px 0;
+
+    font-size: 13px;
+    color: #666;
+}
+
+.shop-detail-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.shop-detail-google,
+.shop-detail-phone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 42px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    background: white;
+    border: 1px solid #eadfd2;
+    border-radius: 10px;
+
+    text-decoration: none;
+}
+
+.shop-detail-google {
+    flex: 1;
+    gap: 6px;
+    color: #e94264;
+}
+
+.shop-detail-google img {
+    width: 20px;
+    height: 20px;
+}
+
+.shop-detail-phone {
+    width: 42px;
+    color: #e85d75;
+}
+
+.header-list-btn {
+    padding: 8px 12px;
+
+    font-size: 14px;
+    color: #3f2f25;
+
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+.header-btn {
+    padding: 8px 12px;
+
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: 600;
+    color: #5a4638;
+
+    background: white;
+    border: 1px solid #eadfd2;
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+
+/* ========================================
+   検索画面
+======================================== */
+
+
+/* ==============================
+   ロゴ
+============================== */
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+.logo-img {
+    display: block;
+
+    width: 70%;
+    max-width: 320px;
+    height: auto;
+}
+
+.logo-copy {
+    margin: 4px 0 0;
+
+    font-weight: bold;
+    font-size: 13px;
+    color: #6f625a;
+
+    text-align: center;
+}
+
+
+/* ==============================
+   検索セクション共通
+============================== */
+
+.search-card {
+    margin-bottom: 18px;
+    padding: 5px 22px 15px;
+
+    background: #fff;
+    border: 1px solid #eadfd2;
+    border-radius: 20px;
+}
+
+
+/* セクション見出し全体 */
+.section-heading {
+    margin-bottom: 10px;
+}
+
+
+/* アイコン＋タイトル */
+.section-title-row {
+    display: flex;
+    align-items: center;
+}
+
+
+/* 見出しアイコン */
+.section-icon-img {
+    width: 35px;
+    height: 35px;
+
+    margin-left: -7px;
+
+    object-fit: contain;
+
+    transform: translateY(3px);
+}
+
+
+/* セクションタイトル */
+.section-title {
+    margin: 10px 0 4px;
+
+    font-size: 20px;
+    font-weight: bold;
+    color: #3f2f25;
+}
+
+
+/* セクション説明 */
+.section-description {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #777;
+}
+
+
+/* 「任意」 */
+.optional {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+
+/* ==============================
+   条件カード
+============================== */
+
+.filters {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.filter-card {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 14px 8px;
+
+    font-size: 14px;
+    font-weight: bold;
+    color: #3f2f25;
+
+    background: #fff;
+    border: 1px solid #eadfd2;
+    border-radius: 16px;
+
+    cursor: pointer;
+}
+
+
+/* チェックボックス */
+.filter-card input {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+    width: 20px;
+    height: 20px;
+
+    accent-color: #42ad48;
+}
+
+
+/* 条件アイコン */
+.filter-icon {
+    width: 40px;
+    height: 40px;
+
+    margin-top: 15px;
+
+    object-fit: contain;
+}
+
+
+/* 条件名 */
+.filter-card span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 40px;
+    margin-bottom: 0;
+
+    text-align: center;
+    line-height: 1.4;
+}
+
+
+/* 選択中 */
+.filter-card:has(input:checked) {
+    background: #fffaf4;
+    border-color: #e5cdb4;
+}
+
+
+/* ==============================
+   検索範囲
+============================== */
+
+.location-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    cursor: pointer;
+}
+
+.location-option input {
+    flex-shrink: 0;
+
+    width: 22px;
+    height: 22px;
+    margin-top: 2px;
+
+    accent-color: #42ad48;
+}
+
+.location-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #3f2f25;
+}
+
+
+/* ==============================
+   キーワード
+============================== */
+
+.keyword-input {
+    box-sizing: border-box;
+
+    width: 100%;
+    padding: 14px 16px;
+
+    font-size: 16px;
+
+    background: #fff;
+    border: 1px solid #cfc5bd;
+    border-radius: 12px;
+    outline: none;
+}
+
+.keyword-input:focus {
+    border-color: #42ad48;
+}
+
+.keyword-input::placeholder {
+    color: #aaa;
+}
+
+
+/* ==============================
+   検索ボタン
+============================== */
+
+.search-btn {
+    display: block;
+
+    width: 100%;
+    margin-top: 8px;
+    padding: 16px;
+
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+
+    background: #42ad48;
+    border: none;
+    border-radius: 16px;
+
+    cursor: pointer;
+}
+
+.search-btn:active {
+    transform: translateY(1px);
+}
+
+
+/* ==============================
+   下部説明
+============================== */
+
+.search-guide {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    margin-top: 18px;
+    padding: 16px;
+
+    font-size: 13px;
+    line-height: 1.6;
+    color: #5a4638;
+
+    background: #fff8ea;
+    border-radius: 16px;
+}
+
+.guide-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.section-icon-img {
+    width: 35\px;
+    height: 35px;
+    object-fit: contain;
+    margin-left: -7px;
+}
+
+.section-heading {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.section-title-row {
+    display: flex;
+    align-items: center;
+}
+
+.section-icon-img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    transform: translateY(3px);
+}
+
+.filter-card span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 40px;
+    margin-bottom: 0;
+
+    text-align: center;
+    line-height: 1.4;
+}

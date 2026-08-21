@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>地図 - ハイレタ</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+</head>
+
+<body>
+
+    <div class="phone">
+
+        <!-- ヘッダー -->
+        <div class="result-header">
+
+            <button id="backBtn" class="header-btn">
+                ‹ 検索へ
+            </button>
+
+            <button id="listBtn" class="header-btn">
+                一覧
+            </button>
+
+        </div>
+
+        <div id="searchCondition" Class="search-condition">
+        </div>
+
+        <div calss="map-area">
+
+            <!-- 地図 -->
+            <div id="map"></div>
+
+            <!-- 店舗詳細 -->
+            <div id="shopDetail"></div>
+
+        </div>
+
+
+    </div>
+
+    <!-- PapaParse -->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+    <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- 自作JavaScript -->
+    <script src="common.js"></script>
+    <script src="map.js"></script>
+
+</body>
+
+</html>

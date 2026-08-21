@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>検索結果 - ハイレタ</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <button id="topBtn" class="top-btn">
+        ↑
+    </button>
+
+    <div class="phone">
+
+        <div class="result-header">
+
+            <button id="backBtn" class="header-btn">
+                ‹ 検索へ
+            </button>
+
+            <div id="resultCount" class="result-title"></div>
+
+            <button id="mapBtn" class="header-btn">
+                地図
+            </button>
+
+        </div>
+
+        <div class="search-condition" id="searchCondition"></div>
+
+        <!-- 店舗一覧（JavaScriptで生成） -->
+        <div id="shopList"></div>
+
+        <button class="more-btn" id="moreBtn">
+            もっと見る
+        </button>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="common.js"></script>
+    <script src="list.js"></script>
+</body>
+
+</html>

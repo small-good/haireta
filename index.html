@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ハイレタ！</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="phone">
+
+        <!-- ロゴ -->
+        <div class="logo">
+
+            <img src="icons/logo.png" alt="ハイレタ！" class="logo-img">
+
+            <p class="logo-copy">
+                子連れのお店探しを、もっとラクに。
+            </p>
+
+        </div>
+
+
+        <!-- 条件で絞り込む -->
+        <section class="search-card">
+            <div class="section-heading">
+
+                <div class="section-title-row">
+
+                    <img src="icons/filter.png" alt="" class="section-icon-img">
+
+                    <div class="section-title">
+                        条件で絞り込む
+                    </div>
+
+                </div>
+
+                <div class="section-description">
+                    当てはまる条件を選択してください（複数選択可）
+                </div>
+
+            </div>
+
+
+            <div class="filters">
+
+                <!-- 子ども椅子 -->
+                <label class="filter-card">
+
+                    <input type="checkbox" id="chair" checked>
+
+                    <img src="icons/child-chair.png" class="filter-icon" alt="">
+
+                    <span>
+                        子ども椅子
+                    </span>
+
+                </label>
+
+
+                <!-- ベビーカー -->
+                <label class="filter-card">
+
+                    <input type="checkbox" id="stroller">
+
+                    <img src="icons/stroller.png" class="filter-icon" alt="">
+
+                    <span>
+                        ベビーカー入店
+                    </span>
+
+                </label>
+
+
+                <!-- 子連れ歓迎 -->
+                <label class="filter-card">
+
+                    <input type="checkbox" id="friendly">
+
+                    <img src="icons/family-friendly.png" class="filter-icon" alt="">
+
+                    <span>
+                        子連れ歓迎
+                    </span>
+
+                </label>
+
+            </div>
+
+        </section>
+
+
+        <!-- 検索範囲 -->
+        <section class="search-card">
+
+            <div class="section-heading">
+
+                <div class="section-title-row">
+
+                    <img src="icons/location.png" alt="" class="section-icon-img">
+
+                    <div class="section-title">
+                        エリア指定
+                    </div>
+
+                </div>
+                <div class="section-description">
+                    チェックすると、現在地の近くから検索します
+                </div>
+
+
+            </div>
+
+
+            <label class="location-option">
+
+                <input type="checkbox" id="currentLocation" checked>
+
+                <div>
+                    <div class="location-title">
+                        現在地から5km以内
+                    </div>
+
+                </div>
+
+            </label>
+
+        </section>
+
+
+        <!-- キーワード -->
+        <section class="search-card">
+
+            <div class="section-heading">
+
+                <div class="section-title-row">
+
+                    <img src="icons/keyword.png" alt="" class="section-icon-img">
+
+                    <div class="section-title">
+                        キーワード
+                        <span class="optional">
+                            （任意）
+                        </span>
+                    </div>
+
+                </div>
+                <div class="section-description">
+                    エリア・店名・ジャンルなどを入力してください
+                </div>
+
+            </div>
+
+
+            <input type="text" id="keyword" class="keyword-input" placeholder="例）大森、焼肉など">
+
+        </section>
+
+
+        <!-- 検索 -->
+        <button class="search-btn" id="searchBtn">
+            検索する
+        </button>
+
+
+        <!-- 補足 -->
+        <div class="search-guide">
+
+            <img src="icons/lightbulb.png" alt="" class="guide-icon">
+
+            <div>
+                条件・エリア・キーワードを組み合わせて、<br>
+                お店を検索できます。
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="index.js"></script>
+
+</body>
+
+</html>
