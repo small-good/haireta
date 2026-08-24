@@ -45,7 +45,7 @@ function createMap(
                 Number(lat),
                 Number(lng)
             ],
-            14
+            17
         );
 
     L.tileLayer(
@@ -82,6 +82,17 @@ function showShopDetail(shop) {
 
         <!-- 子連れ情報 -->
         ${createShopIcons(shop)}
+
+        <!-- コメント -->
+        <div class="shop-detail-comment">
+            <span class="shop-detail-comment-label">
+                メモ：
+            </span>
+
+            <span>
+                ${shop.q4_comment || "特記事項なし"}
+            </span>
+        </div>
 
         <!-- 住所 -->
         <div class="shop-detail-address">
