@@ -26,6 +26,105 @@ listBtn.addEventListener(
     }
 );
 
+// 検索条件ボタン
+const conditionBtn =
+    document.getElementById("conditionBtn");
+
+const conditionPanel =
+    document.getElementById("conditionPanel");
+
+
+// 検索条件の詳細を開閉
+conditionBtn.addEventListener(
+    "click",
+    function () {
+
+        conditionPanel.classList.toggle("show");
+
+        const isOpen =
+            conditionPanel.classList.contains("show");
+
+        conditionBtn.setAttribute(
+            "aria-expanded",
+            isOpen
+        );
+
+    }
+);
+
+
+// 地図上部に検索条件の要約を表示
+function showConditionSummary(
+    keyword,
+    chair,
+    stroller,
+    friendly
+) {
+
+    const keywordElement =
+        document.getElementById("conditionKeyword");
+
+    const dividerElement =
+        document.getElementById("conditionDivider");
+
+    const countElement =
+        document.getElementById("conditionCount");
+
+
+    // 絞り込み条件の数
+    const filterCount =
+        [
+            chair,
+            stroller,
+            friendly
+        ].filter(
+            function (condition) {
+
+                return condition === "true";
+
+            }
+        ).length;
+
+
+    // キーワードがある場合
+    if (keyword) {
+
+        keywordElement.textContent =
+            keyword;
+
+    } else {
+
+        keywordElement.textContent =
+            "現在地から5km以内";
+
+    }
+
+
+    // 絞り込み条件がある場合
+    if (filterCount > 0) {
+
+        dividerElement.style.display =
+            "";
+
+        countElement.style.display =
+            "";
+
+        countElement.textContent =
+            "絞り込み" +
+            filterCount +
+            "件";
+
+    } else {
+
+        dividerElement.style.display =
+            "none";
+
+        countElement.style.display =
+            "none";
+
+    }
+
+}
 
 // 地図生成
 function createMap(
@@ -45,7 +144,7 @@ function createMap(
                 Number(lat),
                 Number(lng)
             ],
-            17
+            16
         );
 
     L.tileLayer(
@@ -244,6 +343,13 @@ async function main() {
     document.getElementById("searchCondition").innerHTML =
         conditionText;
 
+    showConditionSummary(
+        keyword,
+        chair,
+        stroller,
+        friendly
+    );
+
     let shopsWithDistance = shops;
 
     // 現在地がある場合は距離を計算
@@ -333,7 +439,54 @@ async function main() {
             "click",
             function () {
 
+                // 検索条件の詳細を閉じる
+                conditionPanel.classList.remove("show");
+
+                conditionBtn.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+
+                // 店舗詳細を表示
                 showShopDetail(shop);
+
+
+                // 選択したピンを一度中央へ移動
+                map.panTo(
+                    marker.getLatLng(),
+                    {
+                        animate: true
+                    }
+                );
+
+
+                // 店舗詳細カードの高さに合わせて
+                // ピンを画面上側へ移動
+                setTimeout(
+                    function () {
+
+                        const shopDetail =
+                            document.getElementById(
+                                "shopDetail"
+                            );
+
+                        const moveDistance =
+                            shopDetail.offsetHeight / 2;
+
+                        map.panBy(
+                            [
+                                0,
+                                moveDistance
+                            ],
+                            {
+                                animate: true
+                            }
+                        );
+
+                    },
+                    250
+                );
 
             }
         );

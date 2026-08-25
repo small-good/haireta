@@ -16,38 +16,56 @@
 
 </head>
 
-<body>
+<body class="map-page">
 
-    <div class="phone">
-
-        <!-- ヘッダー -->
-        <div class="result-header">
-
-            <button id="backBtn" class="header-btn">
-                ‹ 検索へ
-            </button>
-
-            <button id="listBtn" class="header-btn">
-                一覧
-            </button>
-
-        </div>
-
-        <div id="searchCondition" Class="search-condition">
-        </div>
+    <div class="phone map-phone">
 
         <div class="map-area">
 
             <!-- 地図 -->
             <div id="map"></div>
 
+
+            <!-- 地図上部の操作エリア -->
+            <div class="map-header">
+
+                <button id="backBtn" class="header-btn" type="button">
+                    ‹ 検索へ
+                </button>
+
+
+                <!-- 検索条件の要約 -->
+                <button id="conditionBtn" class="condition-summary" type="button" aria-expanded="false">
+                    <span id="conditionKeyword" class="condition-keyword"></span>
+
+                    <span id="conditionDivider" class="condition-divider">
+                        ｜
+                    </span>
+
+                    <span id="conditionCount" class="condition-count"></span>
+                </button>
+
+
+                <button id="listBtn" class="header-btn" type="button">
+                    一覧
+                </button>
+
+            </div>
+
+
+            <!-- 検索条件の詳細 -->
+            <div id="conditionPanel" class="condition-panel">
+                <div id="searchCondition" class="map-condition-detail"></div>
+            </div>
+
+
             <!-- 店舗詳細 -->
             <div id="shopDetail"></div>
 
         </div>
 
-
     </div>
+
 
     <!-- PapaParse -->
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
