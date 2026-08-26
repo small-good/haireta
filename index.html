@@ -27,7 +27,7 @@
 
 
         <!-- 条件で絞り込む -->
-        <section class="search-card">
+        <section class="search-card" id="filterSection">
             <div class="section-heading">
 
                 <div class="section-title-row">
@@ -36,12 +36,16 @@
 
                     <div class="section-title">
                         条件で絞り込む
+                        <span class="required-badge">
+                            必須
+                        </span>
                     </div>
 
                 </div>
 
                 <div class="section-description">
-                    当てはまる条件を選択してください（複数選択可）
+                    子連れ条件に当てはまるお店だけを検索します。<br>
+                    1つ以上選択してください（複数選択可）
                 </div>
 
             </div>
@@ -90,6 +94,11 @@
 
                 </label>
 
+            </div>
+
+            <!-- 条件未選択時のエラー -->
+            <div id="filterError" class="filter-error" role="alert" aria-live="polite">
+                子連れ条件を1つ以上選択してください。
             </div>
 
         </section>
@@ -157,7 +166,7 @@
             </div>
 
 
-            <input type="text" id="keyword" class="keyword-input" placeholder="例）大森、焼肉など">
+            <input type="text" id="keyword" class="keyword-input" placeholder="例）大森、焼肉、バンボなど">
 
         </section>
 

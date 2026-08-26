@@ -86,7 +86,9 @@ function filterShops(
             const searchText =
                 (
                     (shop.store_name || "") +
-                    (shop.address_full || "")
+                    (shop.address_full || "") +
+                    (shop.genre || "") +
+                    (shop.q4_comment || "")
                 ).toLowerCase();
 
             if (
@@ -312,5 +314,93 @@ function createConditionText(
     }
 
     return conditionText;
+
+}
+
+// Googleマップの経路URLを作成
+function createGoogleDirectionsUrl(shop) {
+
+    const destination =
+        [
+            shop.store_name,
+            shop.address_full
+        ]
+            .filter(Boolean)
+            .join(" ");
+
+    let url =
+        "https://www.google.com/maps/dir/" +
+        "?api=1" +
+        "&destination=" +
+        encodeURIComponent(destination);
+
+
+    // Place IDがある場合は、店舗をより正確に指定
+    if (shop.place_id) {
+
+        url +=
+            "&destination_place_id=" +
+            encodeURIComponent(
+                shop.place_id
+            );
+
+    }
+
+    return url;
+
+}
+
+
+// 店舗カードのアクションボタン作成
+function createShopActions(shop) {
+
+    return `
+        <div class="shop-actions">
+
+            <!-- Google検索 -->
+            <a
+                class="action-btn google-btn"
+                href="https://www.google.com/search?q=${encodeURIComponent(
+        shop.store_name +
+        " " +
+        (shop.address_full || "")
+    )}"
+                target="_blank"
+            >
+                <img
+                    src="icons/google-g.svg"
+                    alt=""
+                >
+                Google検索
+            </a>
+
+
+            <!-- 経路 -->
+            <a
+                class="action-btn map-btn"
+                href="${createGoogleDirectionsUrl(shop)}"
+                target="_blank"
+            >
+                <img
+                    src="icons/google-maps.svg"
+                    alt=""
+                >
+                経路を見る
+            </a>
+
+
+            <!-- 電話 -->
+            ${shop.phone ? `
+                <a
+                    class="phone-btn"
+                    href="tel:${shop.phone}"
+                    aria-label="電話をかける"
+                >
+                    📞
+                </a>
+            ` : ""}
+
+        </div>
+    `;
 
 }

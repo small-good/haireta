@@ -41,49 +41,6 @@ topBtn.addEventListener(
     }
 );
 
-// ショップカードのアクションボタン作成
-function createShopActions(shop) {
-
-    return `
-    <div class="shop-actions">
-
-        <a
-            class="action-btn google-btn"
-            href="https://www.google.com/search?q=${encodeURIComponent(
-        shop.store_name + " " + (shop.address_full || "")
-    )}"
-            target="_blank">
-
-            <img src="icons/google-g.svg">
-            Google検索
-
-        </a>
-
-        <a
-            class="action-btn map-btn"
-            href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-        shop.store_name + " " + (shop.address_full || "")
-    )}"
-            target="_blank">
-
-            <img src="icons/google-maps.svg">
-            マップで見る
-
-        </a>
-
-    ${shop.phone ? `
-        <a
-            class="phone-btn"
-            href="tel:${shop.phone}">
-            📞
-        </a>
-        ` : ""}
-
-    </div>
-    `;
-
-}
-
 
 // ショップカード生成
 function createShopCards(filteredShops) {

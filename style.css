@@ -8,7 +8,7 @@ body {
 
 .phone {
     margin: 0 auto;
-    padding: 28px 24px 40px;
+    padding: 16px 24px 40px;
     max-width: 430px;
     min-height: 100vh;
     box-sizing: border-box;
@@ -211,9 +211,31 @@ body {
 }
 
 .shop-actions {
-    display: grid;
-    grid-template-columns: 1fr 1fr 48px;
+    display: flex;
     gap: 10px;
+}
+
+.action-btn {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    height: 44px;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: bold;
+
+    background: white;
+    text-decoration: none;
+    border: 1px solid #eadfd2;
+    border-radius: 10px;
+}
+
+.phone-btn {
+    flex-shrink: 0;
 }
 
 .action-btn {
@@ -977,4 +999,73 @@ body.map-page {
 
 .map-page .leaflet-top.leaflet-left {
     top: 56px;
+}
+
+.shop-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+.shop-detail-header .shop-detail-name {
+    min-width: 0;
+    margin-bottom: 0;
+}
+
+/* 必須表示 */
+
+.required-badge {
+    display: inline-block;
+
+    margin-left: 6px;
+    padding: 2px 7px;
+
+    vertical-align: middle;
+    font-size: 11px;
+    color: white;
+
+    background: #e85d75;
+    border-radius: 999px;
+}
+
+
+/* 条件未選択エラー */
+
+.filter-error {
+    display: none;
+
+    margin-top: 10px;
+    padding: 9px 12px;
+
+    font-size: 13px;
+    font-weight: bold;
+    color: #c83d54;
+
+    background: #fff1f3;
+    border-radius: 10px;
+}
+
+.filter-error.show {
+    display: block;
+}
+
+.search-card.has-error {
+    border-color: #e85d75;
+}
+
+.shop-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+
+    margin-bottom: 10px;
+}
+
+.shop-detail-header .shop-detail-name {
+    min-width: 0;
+    margin-bottom: 0;
 }

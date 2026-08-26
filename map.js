@@ -163,7 +163,6 @@ function createMap(
 }
 
 // 店舗詳細を表示
-// 店舗詳細を表示
 function showShopDetail(shop) {
 
     const shopDetail =
@@ -174,9 +173,19 @@ function showShopDetail(shop) {
         <!-- スワイプ用のバー -->
         <div class="shop-detail-handle"></div>
 
-        <!-- 店名 -->
-        <div class="shop-detail-name">
-            ${shop.store_name}
+        <!-- 店名・ジャンル -->
+        <div class="shop-detail-header">
+
+            <div class="shop-detail-name">
+                ${shop.store_name}
+            </div>
+
+            ${shop.genre ? `
+                <div class="shop-genre">
+                    ${shop.genre}
+                </div>
+            ` : ""}
+
         </div>
 
         <!-- 子連れ情報 -->
@@ -210,29 +219,7 @@ function showShopDetail(shop) {
         </div>
 
         <!-- ボタン -->
-        <div class="shop-detail-actions">
-
-            <a
-                class="shop-detail-google"
-                href="https://www.google.com/search?q=${encodeURIComponent(
-                shop.store_name + " " + (shop.address_full || "")
-            )}"
-                target="_blank"
-            >
-                <img src="icons/google-g.svg" alt="">
-                Google検索
-            </a>
-
-            ${shop.phone ? `
-                <a
-                    class="shop-detail-phone"
-                    href="tel:${shop.phone}"
-                >
-                    📞
-                </a>
-            ` : ""}
-
-        </div>
+        ${createShopActions(shop)}
 
     `;
 

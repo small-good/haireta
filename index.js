@@ -23,6 +23,41 @@ searchBtn.addEventListener(
         const currentLocation =
             document.getElementById("currentLocation").checked;
 
+        // 条件未選択時のエラー
+        if (
+            !chair &&
+            !stroller &&
+            !friendly
+        ) {
+
+            const filterSection =
+                document.getElementById("filterSection");
+
+            const filterError =
+                document.getElementById("filterError");
+
+
+            filterSection.classList.add(
+                "has-error"
+            );
+
+            filterError.classList.add(
+                "show"
+            );
+
+
+            // 条件欄まで画面を戻す
+            filterSection.scrollIntoView(
+                {
+                    behavior: "smooth",
+                    block: "center"
+                }
+            );
+
+            return;
+
+        }
+
 
         // 現在地検索を使う場合
         if (currentLocation) {
@@ -117,6 +152,47 @@ searchBtn.addEventListener(
             stroller +
             "&friendly=" +
             friendly;
+
+    }
+);
+
+// 条件を選択したらエラーを消す
+const filterCheckboxes =
+    document.querySelectorAll(
+        "#chair, #stroller, #friendly"
+    );
+
+filterCheckboxes.forEach(
+    function (checkbox) {
+
+        checkbox.addEventListener(
+            "change",
+            function () {
+
+                const isSelected =
+                    document.getElementById("chair").checked ||
+                    document.getElementById("stroller").checked ||
+                    document.getElementById("friendly").checked;
+
+
+                if (isSelected) {
+
+                    document
+                        .getElementById("filterSection")
+                        .classList.remove(
+                            "has-error"
+                        );
+
+                    document
+                        .getElementById("filterError")
+                        .classList.remove(
+                            "show"
+                        );
+
+                }
+
+            }
+        );
 
     }
 );
