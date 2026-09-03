@@ -1,72 +1,203 @@
-// 検索ボタン
-const searchBtn =
-    document.getElementById("searchBtn");
+// ボタン取得
+const listBtn =
+    document.getElementById("listBtn");
+
+const mapBtn =
+    document.getElementById("mapBtn");
 
 
-searchBtn.addEventListener(
+// 入力内容を取得
+function getSearchConditions() {
+
+    const keyword =
+        document
+            .getElementById("keyword")
+            .value
+            .trim();
+
+    const genre =
+        document
+            .getElementById("genre")
+            .value;
+
+    const chair =
+        document
+            .getElementById("chair")
+            .checked;
+
+    const stroller =
+        document
+            .getElementById("stroller")
+            .checked;
+
+    const friendly =
+        document
+            .getElementById("friendly")
+            .checked;
+
+
+    return {
+        keyword,
+        genre,
+        chair,
+        stroller,
+        friendly
+    };
+
+}
+
+
+// 子連れ条件をチェック
+function validateFilters(conditions) {
+
+    if (
+        conditions.chair ||
+        conditions.stroller ||
+        conditions.friendly
+    ) {
+        return true;
+    }
+
+
+    const filterSection =
+        document.getElementById(
+            "filterSection"
+        );
+
+    const filterError =
+        document.getElementById(
+            "filterError"
+        );
+
+
+    filterSection.classList.add(
+        "has-error"
+    );
+
+    filterError.classList.add(
+        "show"
+    );
+
+
+    filterSection.scrollIntoView(
+        {
+            behavior: "smooth",
+            block: "center"
+        }
+    );
+
+
+    return false;
+
+}
+
+
+// URLパラメータ作成
+function createSearchParams(
+    conditions
+) {
+
+    const params =
+        new URLSearchParams();
+
+
+    params.set(
+        "keyword",
+        conditions.keyword
+    );
+
+    params.set(
+        "genre",
+        conditions.genre
+    );
+
+    params.set(
+        "chair",
+        conditions.chair
+    );
+
+    params.set(
+        "stroller",
+        conditions.stroller
+    );
+
+    params.set(
+        "friendly",
+        conditions.friendly
+    );
+
+
+    return params;
+
+}
+
+
+// ==============================
+// 一覧で見る
+// ==============================
+
+listBtn.addEventListener(
     "click",
     function () {
 
-        // 入力内容を取得
-        const keyword =
-            document.getElementById("keyword").value.trim();
+        const conditions =
+            getSearchConditions();
 
-        const chair =
-            document.getElementById("chair").checked;
 
-        const stroller =
-            document.getElementById("stroller").checked;
-
-        const friendly =
-            document.getElementById("friendly").checked;
-
-        const currentLocation =
-            document.getElementById("currentLocation").checked;
-
-        // 条件未選択時のエラー
         if (
-            !chair &&
-            !stroller &&
-            !friendly
+            !validateFilters(
+                conditions
+            )
         ) {
-
-            const filterSection =
-                document.getElementById("filterSection");
-
-            const filterError =
-                document.getElementById("filterError");
-
-
-            filterSection.classList.add(
-                "has-error"
-            );
-
-            filterError.classList.add(
-                "show"
-            );
-
-
-            // 条件欄まで画面を戻す
-            filterSection.scrollIntoView(
-                {
-                    behavior: "smooth",
-                    block: "center"
-                }
-            );
-
             return;
-
         }
 
 
-        // 現在地検索を使う場合
-        if (currentLocation) {
+        const params =
+            createSearchParams(
+                conditions
+            );
 
-            console.log("現在地を取得します");
 
-            navigator.geolocation.getCurrentPosition(
+        window.location.href =
+            "list.html?" +
+            params.toString();
 
-                // 現在地取得成功
+    }
+);
+
+
+// ==============================
+// 地図で見る
+// ==============================
+
+mapBtn.addEventListener(
+    "click",
+    function () {
+
+        const conditions =
+            getSearchConditions();
+
+
+        if (
+            !validateFilters(
+                conditions
+            )
+        ) {
+            return;
+        }
+
+
+        console.log(
+            "現在地を取得します"
+        );
+
+
+        navigator
+            .geolocation
+            .getCurrentPosition(
+
+                // 取得成功
                 function (position) {
 
                     const latitude =
@@ -76,42 +207,31 @@ searchBtn.addEventListener(
                         position.coords.longitude;
 
 
-                    console.log(
-                        "取得した緯度:",
+                    const params =
+                        createSearchParams(
+                            conditions
+                        );
+
+
+                    params.set(
+                        "lat",
                         latitude
                     );
 
-                    console.log(
-                        "取得した経度:",
+                    params.set(
+                        "lng",
                         longitude
                     );
 
-                    console.log(
-                        "位置精度:",
-                        position.coords.accuracy
-                    );
 
-
-                    // 地図画面へ
                     window.location.href =
                         "map.html?" +
-                        "keyword=" +
-                        encodeURIComponent(keyword) +
-                        "&lat=" +
-                        latitude +
-                        "&lng=" +
-                        longitude +
-                        "&chair=" +
-                        chair +
-                        "&stroller=" +
-                        stroller +
-                        "&friendly=" +
-                        friendly;
+                        params.toString();
 
                 },
 
 
-                // 現在地取得失敗
+                // 取得失敗
                 function (error) {
 
                     console.log(
@@ -128,39 +248,28 @@ searchBtn.addEventListener(
                         error.message
                     );
 
+
                     alert(
-                        "現在地を取得できませんでした。位置情報の設定を確認してください。"
+                        "地図を見るには現在地の取得が必要です。位置情報の設定を確認してください。"
                     );
 
                 }
 
             );
 
-            return;
-
-        }
-
-
-        // 現在地検索を使わない場合
-        window.location.href =
-            "list.html?" +
-            "keyword=" +
-            encodeURIComponent(keyword) +
-            "&chair=" +
-            chair +
-            "&stroller=" +
-            stroller +
-            "&friendly=" +
-            friendly;
-
     }
 );
 
-// 条件を選択したらエラーを消す
+
+// ==============================
+// 条件選択後はエラー解除
+// ==============================
+
 const filterCheckboxes =
     document.querySelectorAll(
         "#chair, #stroller, #friendly"
     );
+
 
 filterCheckboxes.forEach(
     function (checkbox) {
@@ -170,26 +279,46 @@ filterCheckboxes.forEach(
             function () {
 
                 const isSelected =
-                    document.getElementById("chair").checked ||
-                    document.getElementById("stroller").checked ||
-                    document.getElementById("friendly").checked;
-
-
-                if (isSelected) {
+                    document
+                        .getElementById(
+                            "chair"
+                        )
+                        .checked ||
 
                     document
-                        .getElementById("filterSection")
-                        .classList.remove(
-                            "has-error"
-                        );
+                        .getElementById(
+                            "stroller"
+                        )
+                        .checked ||
 
                     document
-                        .getElementById("filterError")
-                        .classList.remove(
-                            "show"
-                        );
+                        .getElementById(
+                            "friendly"
+                        )
+                        .checked;
 
+
+                if (!isSelected) {
+                    return;
                 }
+
+
+                document
+                    .getElementById(
+                        "filterSection"
+                    )
+                    .classList.remove(
+                        "has-error"
+                    );
+
+
+                document
+                    .getElementById(
+                        "filterError"
+                    )
+                    .classList.remove(
+                        "show"
+                    );
 
             }
         );

@@ -92,6 +92,11 @@ function showConditionSummary(
         keywordElement.textContent =
             keyword;
 
+    } else if (genre) {
+
+        keywordElement.textContent =
+            genre;
+
     } else {
 
         keywordElement.textContent =
@@ -310,6 +315,7 @@ async function main() {
     // URLの検索条件取得
     const {
         keyword,
+        genre,
         chair,
         stroller,
         friendly,
@@ -320,6 +326,7 @@ async function main() {
     // 検索条件表示の生成
     const conditionText = createConditionText(
         keyword,
+        genre,
         chair,
         stroller,
         friendly,
@@ -332,6 +339,7 @@ async function main() {
 
     showConditionSummary(
         keyword,
+        genre,
         chair,
         stroller,
         friendly
@@ -359,18 +367,80 @@ async function main() {
         filterShops(
             shopsWithDistance,
             keyword,
+            genre,
             chair,
             stroller,
             friendly
         );
 
     // 現在地検索なら5km以内に絞る
+    // 表示する店舗を決める
+    let displayShops = filteredShops;
+
+    let isExpandedSearch = false;
+    let isOutOfArea = false;
+
+
+    // 現在地がある場合
     if (latitude && longitude) {
 
-        filteredShops =
-            filterNearbyShops(
-                filteredShops
+        // まず5km以内を探す
+        const nearbyShops =
+            filteredShops.filter(
+                function (shop) {
+
+                    return (
+                        shop.distance != null &&
+                        shop.distance <= 5
+                    );
+
+                }
             );
+
+
+        // 5km以内に店舗がある
+        if (nearbyShops.length > 0) {
+
+            displayShops =
+                nearbyShops;
+
+        } else {
+
+            // 5km以内にない場合、
+            // 20km以内まで広げる
+            const expandedShops =
+                filteredShops.filter(
+                    function (shop) {
+
+                        return (
+                            shop.distance != null &&
+                            shop.distance <= 20
+                        );
+
+                    }
+                );
+
+
+            // 20km以内にはある
+            if (expandedShops.length > 0) {
+
+                displayShops =
+                    expandedShops;
+
+                isExpandedSearch =
+                    true;
+
+            } else {
+
+                // 20km以内にもない
+                displayShops = [];
+
+                isOutOfArea =
+                    true;
+
+            }
+
+        }
 
     }
 
@@ -411,7 +481,7 @@ async function main() {
     }
 
     // ピン表示
-    filteredShops.forEach(function (shop) {
+    displayShops.forEach(function (shop) {
 
         if (!shop.lat || !shop.lng) {
             return;
@@ -479,6 +549,70 @@ async function main() {
         );
 
     });
+
+    // ========================================
+    // 店舗が離れている場合は
+    // 現在地と店舗が入る範囲まで地図を引く
+    // ========================================
+
+    if (
+        latitude &&
+        longitude &&
+        displayShops.length > 0
+    ) {
+
+        const bounds =
+            L.latLngBounds();
+
+
+        // 現在地を追加
+        bounds.extend([
+            Number(latitude),
+            Number(longitude)
+        ]);
+
+
+        // 店舗を追加
+        displayShops.forEach(
+            function (shop) {
+
+                if (
+                    !shop.lat ||
+                    !shop.lng
+                ) {
+                    return;
+                }
+
+
+                bounds.extend([
+                    Number(shop.lat),
+                    Number(shop.lng)
+                ]);
+
+            }
+        );
+
+
+        map.fitBounds(
+            bounds,
+            {
+                padding: [
+                    40,
+                    40
+                ],
+                maxZoom: 16
+            }
+        );
+
+    }
+
+    if (isOutOfArea) {
+
+        alert(
+            "現在このエリアには、条件に合う登録店舗がありません。"
+        );
+
+    }
 
     enableShopDetailSwipe();
 

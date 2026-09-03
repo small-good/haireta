@@ -239,6 +239,7 @@ async function main() {
 
     const {
         keyword,
+        genre,
         chair,
         stroller,
         friendly,
@@ -282,6 +283,7 @@ async function main() {
     // 検索条件表示の生成
     const conditionText = createConditionText(
         keyword,
+        genre,
         chair,
         stroller,
         friendly,
@@ -296,6 +298,7 @@ async function main() {
     let filteredShops = filterShops(
         shopsWithDistance,
         keyword,
+        genre,
         chair,
         stroller,
         friendly

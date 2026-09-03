@@ -104,40 +104,63 @@
         </section>
 
 
-        <!-- 検索範囲 -->
+        <!-- ジャンル -->
         <section class="search-card">
 
             <div class="section-heading">
 
                 <div class="section-title-row">
 
-                    <img src="icons/location.png" alt="" class="section-icon-img">
+                    <div class="genre-icon">
+                        🍴
+                    </div>
 
                     <div class="section-title">
-                        エリア指定
+                        ジャンル
+                        <span class="optional">
+                            （任意）
+                        </span>
                     </div>
 
                 </div>
-                <div class="section-description">
-                    チェックすると、現在地の近くから検索します
-                </div>
 
+                <div class="section-description">
+                    食べたいジャンルを選択してください
+                </div>
 
             </div>
 
 
-            <label class="location-option">
+            <select id="genre" class="genre-select">
 
-                <input type="checkbox" id="currentLocation" checked>
+                <option value="">
+                    ジャンルを選択
+                </option>
 
-                <div>
-                    <div class="location-title">
-                        現在地から5km以内
-                    </div>
+                <option value="アジア料理">アジア料理</option>
+                <option value="居酒屋">居酒屋</option>
+                <option value="イタリアン">イタリアン</option>
+                <option value="うどん・そば">うどん・そば</option>
+                <option value="お好み焼き・粉もの">お好み焼き・粉もの</option>
+                <option value="各国料理">各国料理</option>
+                <option value="カフェ・スイーツ">カフェ・スイーツ</option>
+                <option value="カレー">カレー</option>
+                <option value="寿司">寿司</option>
+                <option value="ステーキ・鉄板料理">ステーキ・鉄板料理</option>
+                <option value="ダイニング・バー">ダイニング・バー</option>
+                <option value="中華">中華</option>
+                <option value="丼・定食">丼・定食</option>
+                <option value="鍋">鍋</option>
+                <option value="ビストロ・フレンチ">ビストロ・フレンチ</option>
+                <option value="ファストフード">ファストフード</option>
+                <option value="ファミレス">ファミレス</option>
+                <option value="焼肉">焼肉</option>
+                <option value="洋食">洋食</option>
+                <option value="ラーメン">ラーメン</option>
+                <option value="和食">和食</option>
+                <option value="その他">その他</option>
 
-                </div>
-
-            </label>
+            </select>
 
         </section>
 
@@ -160,22 +183,28 @@
 
                 </div>
                 <div class="section-description">
-                    住所・店名・ジャンルなどを入力してください
+                    住所・店名・特徴などを入力してください
                 </div>
 
             </div>
 
 
-            <input type="text" id="keyword" class="keyword-input" placeholder="例）大森、焼肉、バンボなど">
+            <input type="text" id="keyword" class="keyword-input" placeholder="例）大森、バンボ、食器など">
 
         </section>
 
-
         <!-- 検索 -->
-        <button class="search-btn" id="searchBtn">
-            検索する
-        </button>
+        <div class="search-buttons">
 
+            <button class="view-btn list-view-btn" id="listBtn">
+                一覧で見る
+            </button>
+
+            <button class="view-btn map-view-btn" id="mapBtn">
+                地図で見る
+            </button>
+
+        </div>
 
         <!-- 補足 -->
         <div class="search-guide">
@@ -183,7 +212,7 @@
             <img src="icons/lightbulb.png" alt="" class="guide-icon">
 
             <div>
-                条件・エリア・キーワードを組み合わせて、<br>
+                条件・ジャンル・キーワードを組み合わせて、<br>
                 お店を検索できます。
             </div>
 

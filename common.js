@@ -25,6 +25,7 @@ function getSearchParams() {
     // 検索条件を分解して保存
     return {
         keyword: params.get("keyword"),
+        genre: params.get("genre"),
         chair: params.get("chair"),
         stroller: params.get("stroller"),
         friendly: params.get("friendly"),
@@ -74,6 +75,7 @@ function addDistanceToShops(
 function filterShops(
     shops,
     keyword,
+    genre,
     chair,
     stroller,
     friendly
@@ -87,7 +89,6 @@ function filterShops(
                 (
                     (shop.store_name || "") +
                     (shop.address_full || "") +
-                    (shop.genre || "") +
                     (shop.q4_comment || "")
                 ).toLowerCase();
 
@@ -99,6 +100,13 @@ function filterShops(
                 return false;
             }
 
+        }
+
+        if (
+            genre &&
+            shop.genre !== genre
+        ) {
+            return false;
         }
 
         if (
@@ -267,6 +275,7 @@ function createShopIcons(shop) {
 // 検索条件表示の生成
 function createConditionText(
     keyword,
+    genre,
     chair,
     stroller,
     friendly,
@@ -293,9 +302,23 @@ function createConditionText(
         conditionText += conditions.join("・");
     }
 
-    if (keyword) {
+    if (genre) {
 
         if (conditions.length > 0) {
+            conditionText += "<br>";
+        }
+
+        conditionText += "ジャンル：" + genre;
+
+    }
+
+
+    if (keyword) {
+
+        if (
+            conditions.length > 0 ||
+            genre
+        ) {
             conditionText += "<br>";
         }
 
@@ -305,7 +328,10 @@ function createConditionText(
 
     if (latitude && longitude) {
 
-        if (conditions.length > 0 || keyword) {
+        if (conditions.length > 0 ||
+            genre ||
+            keyword
+        ) {
             conditionText += "<br>";
         }
 
