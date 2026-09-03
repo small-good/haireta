@@ -335,7 +335,7 @@ function createConditionText(
             conditionText += "<br>";
         }
 
-        conditionText += "現在地から5km以内・近い順";
+        conditionText += "現在地周辺・近い順";
 
     }
 

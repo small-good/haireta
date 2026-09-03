@@ -1131,3 +1131,41 @@ body.map-page {
 .view-btn:active {
     transform: translateY(1px);
 }
+
+.map-message {
+    display: none;
+
+    position: absolute;
+    top: calc(76px + env(safe-area-inset-top));
+    right: 16px;
+    left: 16px;
+    z-index: 1050;
+
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 14px 16px;
+    box-sizing: border-box;
+
+    text-align: left;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #5a4638;
+
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid #eadfd2;
+    border-radius: 14px;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.map-message.show {
+    display: block;
+}
+
+.map-message-title {
+    margin-bottom: 4px;
+
+    font-size: 15px;
+    font-weight: bold;
+    color: #3f2f25;
+}

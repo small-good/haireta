@@ -56,6 +56,7 @@ conditionBtn.addEventListener(
 // 地図上部に検索条件の要約を表示
 function showConditionSummary(
     keyword,
+    genre,
     chair,
     stroller,
     friendly
@@ -100,7 +101,7 @@ function showConditionSummary(
     } else {
 
         keywordElement.textContent =
-            "現在地から5km以内";
+            "現在地周辺";
 
     }
 
@@ -378,7 +379,7 @@ async function main() {
     let displayShops = filteredShops;
 
     let isExpandedSearch = false;
-    let isOutOfArea = false;
+    let mapMessageType = "";
 
 
     // 現在地がある場合
@@ -432,11 +433,43 @@ async function main() {
 
             } else {
 
-                // 20km以内にもない
+                // 条件に合う店は20km以内にない
                 displayShops = [];
 
-                isOutOfArea =
-                    true;
+
+                // ========================================
+                // ハイレタの登録エリア自体かどうかを判定
+                // ========================================
+
+                const nearestShop =
+                    shopsWithDistance.find(
+                        function (shop) {
+
+                            return (
+                                shop.distance != null
+                            );
+
+                        }
+                    );
+
+
+                // 登録店自体がかなり遠い
+                if (
+                    !nearestShop ||
+                    nearestShop.distance > 30
+                ) {
+
+                    mapMessageType =
+                        "out-of-area";
+
+                } else {
+
+                    // 登録店は近くにあるが、
+                    // 今回の条件に合う店がない
+                    mapMessageType =
+                        "no-result";
+
+                }
 
             }
 
@@ -606,13 +639,55 @@ async function main() {
 
     }
 
-    if (isOutOfArea) {
+    const mapMessage =
+        document.getElementById(
+            "mapMessage"
+        );
 
-        alert(
-            "現在このエリアには、条件に合う登録店舗がありません。"
+
+    if (
+        mapMessageType ===
+        "no-result"
+    ) {
+
+        mapMessage.innerHTML = `
+            <div class="map-message-title">
+                近くに条件に合うお店が見つかりませんでした
+            </div>
+
+            <div>
+                条件を変更して、もう一度検索してみてください。
+            </div>
+        `;
+
+        mapMessage.classList.add(
+            "show"
         );
 
     }
+
+
+    if (
+        mapMessageType ===
+        "out-of-area"
+    ) {
+
+        mapMessage.innerHTML = `
+            <div class="map-message-title">
+                現在このエリアは対象外です
+            </div>
+
+            <div>
+                ハイレタの対象エリアは順次拡大しています。
+            </div>
+        `;
+
+        mapMessage.classList.add(
+            "show"
+        );
+
+    }
+
 
     enableShopDetailSwipe();
 
