@@ -101,7 +101,7 @@ ST00313,ChIJb_DwSDJgGGARsNY3hIKrqY4,黒毛和牛一頭買焼肉 醍醐 大森店
 ST00314,ChIJW7n6OjJgGGARcYV4bwmd-oo,モスバーガー 大森北店,東京都,大田区,大森北,東京都大田区大森北1丁目30−1,35.5862977,139.7276448,03-3766-2006,admin,2025/4/17,available,unknown,unknown,子ども椅子あり（種類未確認）,ファストフード,大森
 ST00315,ChIJFSOrbj5hGGARwE8atNQvJr4,モスバーガー平和島駅前店,東京都,大田区,大森北,東京都大田区大森北6丁目27−3 伊東ビル 1F,35.5785246,139.7345668,03-5753-7610,admin,2025/4/17,available,unknown,unknown,子ども椅子あり（種類未確認）,ファストフード,平和島
 ST00316,ChIJ2zEWHzJgGGARJ9i9_i-qw9M,屋台屋 博多劇場 大森店,東京都,大田区,大森北,東京都大田区大森北1丁目35−1 大西ビル 1F,35.5866479,139.7270771,03-6423-1155,admin,2025/4/17,available,unknown,unknown,子ども椅子あり（種類未確認）,居酒屋,大森
-ST00317,ChIJoRsdjy1gGGARIa1kR5IsOIE,海鮮処寿し常 アトレ大森店,東京都,大田区,大森北,東京都大田区大森北1丁目6−16 アトレ大森 5F,35.5880523,139.7280017,03-3768-7641,admin,2025/4/17,available,unknown,unknown,子ども椅子あり（種類未確認）,寿司,大森
+ST00317,ChIJoRsdjy1gGGARIa1kR5IsOIE,海鮮処寿し常 アトレ大森店,東京都,大田区,大森北,東京都大田区大森北1丁目6−16 アトレ大森 5F,35.5880523,139.7280017,03-3768-7641,admin,2025/4/17,available,available,family_friendly,ハイチェアあり,寿司,大森
 ST00318,ChIJG-kHHTJgGGARcLfP74Au7cU,吉野家 大森店,東京都,大田区,大森北,東京都大田区大森北1丁目7−6,35.58693,139.727,03-5763-8088,admin,2025/4/17,available,unknown,unknown,子ども椅子あり（種類未確認）,丼・定食,大森
 ST00319,ChIJEwGR7bVhGGAR3qboBqOSCIw,吉野家 平和島店,東京都,大田区,大森北,東京都大田区大森北3丁目39−18,35.5814295,139.7361408,,admin,2025/4/17,available,unknown,unknown,子ども椅子あり（種類未確認）,丼・定食,平和島
 ST00320,ChIJmUI5ujNgGGARk8i8MmUGTgc,大森ホルモン まるみち,東京都,大田区,大森北,東京都大田区大森北1丁目27−3,35.5852829,139.7286784,03-5762-2188,admin,2025/4/17,available,unknown,unknown,子ども椅子2脚（種類未確認）,焼肉,大森
@@ -193,3 +193,4 @@ ST00716,ChIJSdPqXaKKGGARbmiVNWSYPk0,中村屋,東京都,大田区,北馬込,東�
 ST00724,ChIJY5TKg5iKGGARKKcthvhlz2s,ココス 東京イン店,東京都,大田区,北馬込,東京都大田区北馬込2丁目31−31 東京イン 1F,35.5972476,139.7117767,03-5743-7581,admin,2026/6/23,available,available,family_friendly,ハイチェアあり,ファミレス,馬込
 ST00725,ChIJofh3cI32GGARZBvQsk-_Qao,れんげ食堂Toshu 宮崎台店,神奈川県,川崎市宮前区,宮崎,神奈川県川崎市宮前区宮崎2丁目8-7,35.58773986,139.5911305,044-982-0521,admin,2026/7/14,available,available,family_friendly,ハイチェア（ベルトなし）2脚/入口に階段あり,中華料理,宮崎台
 ST00726,ChIJ9SiH0ySIGGARWCijAyitLXs,松屋 新木場店,東京都,江東区,新木場,東京都江東区新木場1-6-1 新木場メトロセンターB棟G-2号,35.6459358,139.8269152,080-5928-0805,admin,2026/8/26,available,unknown,unknown,ハイチェアあり,丼・定食,新木場
+ST00520,ChIJB9glOwBhGGARznVsusR95nM,仙台牛たん 青葉アトレ大森店,東京都,大田区,大森北,東京都大田区大森北1丁目6−16 アトレ大森 5F,35.588095,139.7282131,03-3765-4129,admin,2025/4/17,available,available,family_friendly,ハイチェアあり,和食,大森
