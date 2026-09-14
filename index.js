@@ -152,6 +152,11 @@ listBtn.addEventListener(
             return;
         }
 
+        gtag(
+            "event,
+            "list_search"
+        )
+
 
         const params =
             createSearchParams(
@@ -187,6 +192,10 @@ mapBtn.addEventListener(
             return;
         }
 
+        gtag(
+            "event",
+            "map_search"
+        )
 
         console.log(
             "現在地を取得します"
