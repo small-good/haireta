@@ -153,7 +153,7 @@ listBtn.addEventListener(
         }
 
         gtag(
-            "event,
+            "event",
             "list_search"
         )
 
