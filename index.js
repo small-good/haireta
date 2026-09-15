@@ -131,6 +131,53 @@ function createSearchParams(
 
 }
 
+// GA4へ検索条件を送信
+function sendSearchEvent(
+    conditions,
+    viewType
+) {
+
+    if (
+        typeof gtag !== "function"
+    ) {
+        return;
+    }
+
+
+    gtag(
+        "event",
+        "haireta_search",
+        {
+            view_type:
+                viewType,
+
+            genre:
+                conditions.genre ||
+                "指定なし",
+
+            chair:
+                conditions.chair
+                    ? "yes"
+                    : "no",
+
+            stroller:
+                conditions.stroller
+                    ? "yes"
+                    : "no",
+
+            friendly:
+                conditions.friendly
+                    ? "yes"
+                    : "no",
+
+            keyword_used:
+                conditions.keyword !== ""
+                    ? "yes"
+                    : "no"
+        }
+    );
+
+}
 
 // ==============================
 // 一覧で見る
@@ -152,11 +199,10 @@ listBtn.addEventListener(
             return;
         }
 
-        gtag(
-            "event",
-            "list_search"
+        sendSearchEvent(
+            conditions,
+            "list"
         )
-
 
         const params =
             createSearchParams(
@@ -192,11 +238,6 @@ mapBtn.addEventListener(
             return;
         }
 
-        gtag(
-            "event",
-            "map_search"
-        )
-
         console.log(
             "現在地を取得します"
         );
@@ -215,6 +256,10 @@ mapBtn.addEventListener(
                     const longitude =
                         position.coords.longitude;
 
+                    sendSearchEvent(
+                        conditions,
+                        "map"
+                    )
 
                     const params =
                         createSearchParams(
